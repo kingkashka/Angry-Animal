@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://ccym0tu23drp5"]
+[gd_scene load_steps=3 format=3 uid="uid://ccym0tu23drp5"]
 
 [ext_resource type="Texture2D" uid="uid://gpxuylnqu613" path="res://assets/scene/colored_castle.png" id="1_0ba56"]
+[ext_resource type="PackedScene" uid="uid://c2cpvb0tg6rm2" path="res://Scenes/Bird.tscn" id="2_vsvp5"]
 
 [node name="Level" type="Node2D"]
 
@@ -9,3 +10,7 @@ position = Vector2(0, -140)
 scale = Vector2(1.125, 1)
 texture = ExtResource("1_0ba56")
 centered = false
+
+[node name="Bird" parent="." instance=ExtResource("2_vsvp5")]
+position = Vector2(120, 196)
+freeze = true

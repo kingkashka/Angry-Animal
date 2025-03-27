@@ -10,9 +10,11 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_806kn"]
 radius = 19.2354
 
-[node name="Bird" type="RigidBody2D" node_paths=PackedStringArray("visibleOnScreenNotifier2D", "stretchSound", "launchSound", "kickSound")]
-freeze = true
+[node name="Bird" type="RigidBody2D" node_paths=PackedStringArray("label", "arrow", "visibleOnScreenNotifier2D", "stretchSound", "launchSound", "kickSound")]
+input_pickable = true
 script = ExtResource("1_tto85")
+label = NodePath("Label")
+arrow = NodePath("Arrow")
 visibleOnScreenNotifier2D = NodePath("VisibleOnScreenNotifier2D")
 stretchSound = NodePath("StretchSound")
 launchSound = NodePath("LaunchSound")
@@ -26,10 +28,9 @@ texture = ExtResource("1_rpcp7")
 shape = SubResource("CircleShape2D_806kn")
 
 [node name="Arrow" type="Sprite2D" parent="."]
-position = Vector2(20, -16)
-scale = Vector2(0.15, 0.15)
+scale = Vector2(0.3, 0.3)
 texture = ExtResource("3_qo1os")
-centered = false
+offset = Vector2(150, 0)
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
@@ -41,3 +42,10 @@ stream = ExtResource("5_fn1gv")
 
 [node name="KickSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_2o0di")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -33.0
+offset_top = -43.0
+offset_right = 32.0
+offset_bottom = -20.0
+text = "The Bird"
