@@ -13,4 +13,3 @@ centered = false
 
 [node name="Bird" parent="." instance=ExtResource("2_vsvp5")]
 position = Vector2(120, 196)
-freeze = true
