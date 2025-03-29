@@ -5,19 +5,21 @@
 [ext_resource type="AudioStream" uid="uid://brypf2xlc5won" path="res://assets/audio/splash.ogg" id="3_x3r2l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aq4x0"]
-size = Vector2(126, 117)
+size = Vector2(1288, 117)
 
 [node name="Water" type="Area2D" node_paths=PackedStringArray("splashSound")]
 script = ExtResource("1_hjwib")
 splashSound = NodePath("AudioStreamPlayer2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -40)
-scale = Vector2(37, 41)
+texture_repeat = 2
+position = Vector2(600, 64)
 texture = ExtResource("1_5v6ty")
+region_enabled = true
+region_rect = Rect2(0, 0, 1200, 128)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 4.5)
+position = Vector2(643, 69)
 shape = SubResource("RectangleShape2D_aq4x0")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]

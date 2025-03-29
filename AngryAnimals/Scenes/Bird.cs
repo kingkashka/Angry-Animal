@@ -34,6 +34,7 @@ public partial class Bird : RigidBody2D
 	{
 		ConnectSignals();
 		InitializeVariables();
+
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -49,7 +50,7 @@ public partial class Bird : RigidBody2D
 	}
 	private void ConnectSignals()
 	{
-		visibleOnScreenNotifier2D.ScreenExited += OnScreenExited;
+		visibleOnScreenNotifier2D.ScreenExited += BirdDied;
 		SleepingStateChanged += OnSleepingStateChanged;
 		InputEvent += OnInputEvent;
 	}
@@ -66,10 +67,11 @@ public partial class Bird : RigidBody2D
 
 
 
-	private void OnScreenExited()
+	private void BirdDied()
 	{
 		GD.Print("Bird off screen");
-		// QueueFree();
+		QueueFree();
+		SignalManager.EmitOnBirdDied();
 	}
 
 
