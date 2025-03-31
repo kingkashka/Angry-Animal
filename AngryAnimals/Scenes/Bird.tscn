@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c2cpvb0tg6rm2"]
+[gd_scene load_steps=9 format=3 uid="uid://c2cpvb0tg6rm2"]
 
 [ext_resource type="Texture2D" uid="uid://ct0e77a168ly6" path="res://assets/player/parrot.png" id="1_rpcp7"]
 [ext_resource type="Script" uid="uid://cq303b77k6fpm" path="res://Scenes/Bird.cs" id="1_tto85"]
@@ -7,12 +7,18 @@
 [ext_resource type="AudioStream" uid="uid://bxm257hdtpgkk" path="res://assets/audio/catapult.ogg" id="5_fn1gv"]
 [ext_resource type="AudioStream" uid="uid://cww0huwplq36w" path="res://assets/audio/kick_wood.ogg" id="6_2o0di"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_tto85"]
+bounce = 0.2
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_806kn"]
 radius = 19.2354
 
 [node name="Bird" type="RigidBody2D" node_paths=PackedStringArray("label", "arrow", "visibleOnScreenNotifier2D", "stretchSound", "launchSound", "kickSound")]
 input_pickable = true
+physics_material_override = SubResource("PhysicsMaterial_tto85")
 freeze = true
+contact_monitor = true
+max_contacts_reported = 1
 script = ExtResource("1_tto85")
 label = NodePath("Label")
 arrow = NodePath("Arrow")

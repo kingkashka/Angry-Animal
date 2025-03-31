@@ -1,13 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://ccym0tu23drp5"]
+[gd_scene load_steps=6 format=3 uid="uid://ccym0tu23drp5"]
 
 [ext_resource type="Texture2D" uid="uid://gpxuylnqu613" path="res://assets/scene/colored_castle.png" id="1_0ba56"]
 [ext_resource type="Script" uid="uid://cq7sbe7jonm8l" path="res://Scenes/Level.cs" id="1_fuudy"]
 [ext_resource type="PackedScene" uid="uid://c2cpvb0tg6rm2" path="res://Scenes/Bird.tscn" id="2_vsvp5"]
 [ext_resource type="PackedScene" uid="uid://bjb2p08rvoh53" path="res://Scenes/Water.tscn" id="3_8rbpu"]
+[ext_resource type="PackedScene" uid="uid://dpcj4b4emjtmp" path="res://Scenes/GameUi.tscn" id="5_xylue"]
 
 [node name="Level" type="Node2D" node_paths=PackedStringArray("spawnPoint")]
 script = ExtResource("1_fuudy")
-spawnPoint = NodePath("Marker2D")
+spawnPoint = NodePath("AnimalSpawn")
 birdScene = ExtResource("2_vsvp5")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -20,5 +21,9 @@ centered = false
 z_index = 1
 position = Vector2(1, 575)
 
-[node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(122, 412)
+[node name="AnimalSpawn" type="Marker2D" parent="."]
+position = Vector2(102, 426)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GameUI" parent="CanvasLayer" instance=ExtResource("5_xylue")]

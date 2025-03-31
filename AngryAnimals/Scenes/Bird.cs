@@ -26,6 +26,7 @@ public partial class Bird : RigidBody2D
 	private Vector2 draggedStart = Vector2.Zero;
 	private Vector2 draggedVector = Vector2.Zero;
 	private Vector2 lastDraggedVector = Vector2.Zero;
+	private int lastCollisionCount = 0;
 
 	#endregion
 
@@ -41,6 +42,7 @@ public partial class Bird : RigidBody2D
 	{
 		UpdateDebugLabel();
 		UpdateState();
+		HandleFlight();
 	}
 	private void UpdateDebugLabel()
 	{
@@ -62,7 +64,19 @@ public partial class Bird : RigidBody2D
 	}
 	private void OnSleepingStateChanged()
 	{
+		if (Sleeping)
+		{
+			foreach (Node2D body in GetCollidingBodies())
+			{
+				if (body is Cup cup)
+				{
+					GD.Print("Cup detected");
+					cup.CupDie();
+				}
 
+			}
+			CallDeferred("BirdDied");
+		}
 	}
 
 
@@ -85,8 +99,23 @@ public partial class Bird : RigidBody2D
 		// InputEventMouseButton ev = @event as InputEventMouseButton;
 
 	}
-	
-
+	private void PlayKickSoundOnCollision()
+	{
+		if (lastCollisionCount == 0 && GetContactCount() > 0 && !kickSound.Playing)
+		{
+			kickSound.Play();
+		}
+		lastCollisionCount = GetContactCount();
+	}
+	private void HandleFlight()
+	{
+		PlayKickSoundOnCollision();
+		// if (state == AnimalState.RELEASE)
+		// {
+		// 	ChangeState(AnimalState.READY);
+		// 	return;
+		// }
+	}
 
 	private void ChangeState(AnimalState newState)
 	{

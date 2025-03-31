@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=3 uid="uid://ptdjgx452pob"]
+
+[ext_resource type="Texture2D" uid="uid://bpnqu75ecuch4" path="res://assets/ui/panel_beige.png" id="1_yoeyv"]
+[ext_resource type="LabelSettings" uid="uid://dff54lv6s7ao6" path="res://Resources/LG_White_24.tres" id="2_1224t"]
+[ext_resource type="Script" uid="uid://dji5a818ejeql" path="res://Scenes/LevelButton.cs" id="2_f78ji"]
+[ext_resource type="FontFile" uid="uid://bg66jgld4gghe" path="res://assets/fonts/LuckiestGuy-Regular.ttf" id="3_f78ji"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_u53k8"]
+font = ExtResource("3_f78ji")
+font_size = 24
+outline_size = 3
+shadow_size = 4
+shadow_color = Color(0, 0, 0, 1)
+
+[node name="LevelButton" type="TextureButton" node_paths=PackedStringArray("levelLabel", "scoreLabel", "levelButton")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(50, 50)
+texture_normal = ExtResource("1_yoeyv")
+script = ExtResource("2_f78ji")
+levelLabel = NodePath("MarginContainer/VBoxContainer/LevelLabel")
+scoreLabel = NodePath("MarginContainer/VBoxContainer/ScoreLabel")
+levelButton = NodePath(".")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="LevelLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "3"
+label_settings = ExtResource("2_1224t")
+horizontal_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+text = "9999"
+label_settings = SubResource("LabelSettings_u53k8")
+horizontal_alignment = 1
