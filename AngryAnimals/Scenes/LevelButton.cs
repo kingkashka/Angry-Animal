@@ -15,9 +15,15 @@ public partial class LevelButton : TextureButton
 		MouseExited += onButtonExit;
 		Pressed += onButtonPressed;
 		levelLabel.Text = levelNumber.ToString();
-		scoreLabel.Text = ScoreManager.GetLevelBestScore().ToString("D4");
+		scoreLabel.Text = ScoreManager.GetLevelBestScore(levelNumber).ToString();
 	}
 
+	public override void _ExitTree()
+	{
+		MouseEntered -= onButtonHover;
+		MouseExited -= onButtonExit;
+		Pressed -= onButtonPressed;
+	}
     private void onButtonPressed()
     {
      ScoreManager.SetLevelSelected(levelNumber);

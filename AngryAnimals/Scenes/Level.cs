@@ -22,6 +22,7 @@ public partial class Level : Node2D
     public override void _ExitTree()
 	{
 		SignalManager.Instance.OnBirdDied -= OnBirdDied;
+		SignalManager.Instance.OnCupDestroyed -= OnScoringPoints;
 	}
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
@@ -38,7 +39,7 @@ public partial class Level : Node2D
 	{
 		if(Input.IsKeyPressed(Key.Backspace))
 		{
-			GetTree().ChangeSceneToFile("res://Scenes/MainMenu.tscn");
+			GameManager.LoadMain();
 		}
 	}
 }

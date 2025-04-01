@@ -36,6 +36,7 @@ public partial class Bird : RigidBody2D
 		ConnectSignals();
 		InitializeVariables();
 
+
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -43,7 +44,7 @@ public partial class Bird : RigidBody2D
 		UpdateDebugLabel();
 		UpdateState();
 		HandleFlight();
-	}
+    }
 	private void UpdateDebugLabel()
 	{
 		label.Text = $"{state} SL{Sleeping}";
@@ -70,8 +71,8 @@ public partial class Bird : RigidBody2D
 			{
 				if (body is Cup cup)
 				{
-					GD.Print("Cup detected");
 					cup.CupDie();
+					break;
 				}
 
 			}
@@ -80,12 +81,11 @@ public partial class Bird : RigidBody2D
 	}
 
 
-
 	private void BirdDied()
 	{
-		GD.Print("Bird off screen");
-		QueueFree();
+
 		SignalManager.EmitOnBirdDied();
+		QueueFree();
 	}
 
 
@@ -153,12 +153,13 @@ public partial class Bird : RigidBody2D
 	{
 		return draggedVector * -impulseMultiplier;
 	}
-	private void StartRelease()
+	public void StartRelease()
 	{
 		arrow.Hide();
 		launchSound.Play();
 		Freeze = false;
 		ApplyCentralImpulse(CalculateImpulse());
+		SignalManager.EmitOnAttemptMade();
 	}
 	#region HandleDrag Function
 	private void ConstrainDragWithinLimits()

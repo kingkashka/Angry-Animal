@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://dpcj4b4emjtmp"]
+[gd_scene load_steps=7 format=3 uid="uid://dpcj4b4emjtmp"]
 
+[ext_resource type="Script" uid="uid://e1hm5hy8cqlv" path="res://Scenes/GameUi.cs" id="1_3bj3t"]
 [ext_resource type="LabelSettings" uid="uid://dirf810yc6cxk" path="res://Resources/Grey_48.tres" id="1_6wd7v"]
 [ext_resource type="LabelSettings" uid="uid://dkybb1gsjgge4" path="res://Resources/LG_Blue_96.tres" id="2_3bj3t"]
 [ext_resource type="FontFile" uid="uid://bg66jgld4gghe" path="res://assets/fonts/LuckiestGuy-Regular.ttf" id="3_cu33k"]
@@ -12,7 +13,7 @@ outline_size = 3
 shadow_size = 4
 shadow_color = Color(0, 0, 0, 1)
 
-[node name="GameUI" type="Control"]
+[node name="GameUI" type="Control" node_paths=PackedStringArray("levelLabel", "attemptsLabel", "levelCompleteContainer", "levelCompleteSound")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,6 +21,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+script = ExtResource("1_3bj3t")
+levelLabel = NodePath("MarginContainer/VBScore/LevelLabel")
+attemptsLabel = NodePath("MarginContainer/VBScore/Attempts")
+levelCompleteContainer = NodePath("MarginContainer/VBGameOver")
+levelCompleteSound = NodePath("AudioStreamPlayer2D")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -47,7 +53,7 @@ horizontal_alignment = 1
 
 [node name="Attempts" type="Label" parent="MarginContainer/VBScore"]
 layout_mode = 2
-text = "Attempts 100"
+text = "Attempts 0"
 label_settings = ExtResource("1_6wd7v")
 horizontal_alignment = 1
 
